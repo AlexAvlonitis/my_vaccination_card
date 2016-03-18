@@ -1,27 +1,47 @@
+<% if user_signed_in? %>
+  <h1> User Dashboard </h1>
+  <h3> Vaccination Card  <%= link_to 'Add a vaccination', new_history_path, class: 'btn btn-success btn-sm' %></h1> </h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Scientific Name</th>
+        <th>Commercial Name</th>
+        <th>Date Administered</th>
+        <th>Clinic's Name</th>
+        <th>Expiry Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="history in histories">
+        <td>{{ history.vaccination.science_name }}</td>
+        <td>{{ history.vaccination.commercial_name }}</td>
+        <td>{{ history.date_given }}</td>
+        <td>{{ history.clinic_name }}</td>
+        <td>{{ history.expiry_date }}</td>
+        <td><a href='/histories/{{history.id}}/edit'>Edit</a></td>
+      </tr>
+    </tbody>
+    </table>
 
-<table class="table table-bordered">
+  <h3> Where are you travelling to? </h3>
 
-  <tr>
-    <th style="text-align:center">Vaccination</th>
-    <th style="text-align:center">Clinic</th>
-    <th style="text-align:center">Date administered</th>
-    <th style="text-align:center">Expiry date</th>
-    <th></th>
-  </tr>
-
-  <tr style="width: 100%" ng-repeat="history in histories">
-    <td>{{history.vaccination.science_name}}</td>
-    <td>{{history.clinic_name}}</td>
-    <td>{{history.date_given}}</td>
-    <td>{{history.expiry_date}}</td>
-    <% if current_user %>
-      <td><a href='/histories/{{history.id}}/edit'>Edit</a></td>
-    <% end %>
-  </tr>
-
-
- </table>
-
- <% if current_user %>
-   <a href='/histories/new' class="btn btn-primary">Add a vaccination</a>
- <% end %>
+  <form name="myForm">
+    <label for="repeatSelect"> Country select: </label>
+    <select name="mySelect" id="mySelect"
+      ng-options="c.name for c in countries" ng-model="c">
+    </select>
+  </form>
+  <hr>
+  <tt>Country = {{c.name}}</tt><br/>
+  <strong><p> Vaccinations Required </p></strong>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="v in c.vaccinations">
+      <strong>Commercial Name:</strong> {{ v.commercial_name }}
+    </li>
+  </ul>
+<% else %>
+  <div class="text-center">
+    <h1> Sign in to record your vaccination history </div>
+  </div>
+<% end %>

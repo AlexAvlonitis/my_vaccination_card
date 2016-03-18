@@ -6,5 +6,14 @@ myVaccinationHistory.controller('myVaccinationHistoryController', ['$scope', '$h
     .then(function(response){
       $scope.histories = response.data;
     }, function(response){
+
+
+  $http.get('/countries')
+    .then(function(response){
+      $scope.countries = response.data;
+    }, function(response){
+      console.log(response);
     });
+
+
 }]);
