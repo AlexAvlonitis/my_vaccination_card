@@ -19,15 +19,13 @@ Setup and design
 * Angular front end
 * Bootstrap styling
 (continuing on from Angular and Rails week as well as to keep simple to ensure minimum viable product (MVP) delivered)
-* Info (vaccine list) from World Health Organisation and downloaded into Excel, cleaned and saved into csv, which then imported into ActiveRecord using a rake file
+* Info (vaccine list) from World Health Organisation and downloaded into Excel, cleaned and saved into csv, which then imported into ActiveRecord using rake tasks.
 
 * Fork repository
 * clone down
 * bundle install
-* npm install
-* bower install
+* db:create
 * db:migrate
-* In order to run the app locally on your machine, ensure that the correct severs are running by opening npm start.
 
 Testing
 -------
@@ -42,7 +40,6 @@ Tools
 
 Future changes
 --------------
-* Re-design Devise log in so can use Angular. This will improve user- vaccination model relationships
-* Add functionality so a user can select a country and see what vaccinations they require and by what timeframes.
-* Further refactoring of controllers
+* Add an admin page for staff to add vaccinations/countries relationships and new vaccinations
+* Better frontend design
 * More TDD to Angular, in particular to json
